@@ -1,64 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.tcs</groupId>
-    <artifactId>project</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.example</groupId>
+    <artifactId>java-http-server</artifactId>
+    <version>1.0.0</version>
+    <name>Java HTTP Server Application</name>
+    <description>A simple Java HTTP server application</description>
 
-    <dependencies>
-        <!-- Joda-Time dependency -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.12.5</version>
-        </dependency>
-        
-        <!-- TestNG for testing -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.9.0</version>
-            <scope>test</scope>
-        </dependency>
-        
-        <!-- MySQL Connector -->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>9.0.0</version>
-        </dependency>
-    </dependencies>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <java.version>11</java.version>
+    </properties>
 
     <build>
         <plugins>
+            <!-- Compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
             
-            <!-- REMOVE the maven-jar-plugin since assembly will create the JAR -->
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>hello.HelloWorld</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            -->
-
-            <!-- CORRECTED maven-assembly-plugin configuration -->
+            <!-- Assembly plugin for creating fat JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -67,11 +38,14 @@
                     <archive>
                         <manifest>
                             <mainClass>hello.HelloWorld</mainClass>
+                            <addClasspath>true</addClasspath>
                         </manifest>
                     </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <finalName>app</finalName>
                 </configuration>
                 <executions>
                     <execution>
@@ -82,6 +56,23 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <!-- Surefire plugin for testing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <!-- JUnit for testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
