@@ -1,0 +1,2 @@
+image: basanivenkatesh/java-test
+tag: <+pipeline.sequenceId>
