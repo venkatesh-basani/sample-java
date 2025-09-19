@@ -26,7 +26,7 @@ public class HelloWorld {
         
         // Start the server
         server.start();
-        System.out.println("Server started on port 8080. Open http://localhost:8080 in your browser.");
+        System.out.println("Server started on port 8080. welcome");
         
         // Keep server running
         while (true) {
