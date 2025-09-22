@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: java-app
-        image: basanivenkatesh/java-test:<+pipeline.sequenceId>
+        image: basanivenkatesh/java-test
         ports:
         - containerPort: 8080
