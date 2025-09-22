@@ -1,2 +1,1 @@
-image: basanivenkatesh/java-test
-tag: <+pipeline.sequenceId>
+image: <+artifact.image>
