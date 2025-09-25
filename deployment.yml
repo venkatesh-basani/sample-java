@@ -16,4 +16,4 @@ spec:
       - name: java-app
         image: {{.Values.image}}
         ports:
-        - containerPort: 8080
+        - containerPort: 80
