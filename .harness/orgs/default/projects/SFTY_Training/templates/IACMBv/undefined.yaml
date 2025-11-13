@@ -33,3 +33,9 @@ template:
               timeout: 10m
               spec:
                 command: apply
+      platform:
+        os: Linux
+        arch: Amd64
+      runtime:
+        type: Cloud
+        spec: {}
